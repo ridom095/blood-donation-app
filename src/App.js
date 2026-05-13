@@ -1,22 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './AuthContext';
-import AuthPage from './AuthPage';
-import HomePage from './HomePage';
-import DonationsPage from './DonationsPage';
-import MembersPage from './MembersPage';
-import MessagesPage from './MessagesPage';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
+import DonationsPage from './pages/DonationsPage';
+import MembersPage from './pages/MembersPage';
+import MessagesPage from './pages/MessagesPage';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  if (loading) return <div style={{display:'flex',minHeight:'100vh',alignItems:'center',justifyContent:'center',fontSize:'14px',color:'#999'}}>Loading...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center text-sm text-zinc-400">Loading...</div>;
   return user ? children : <Navigate to="/auth" />;
 };
 
 function AppRoutes() {
   const { user, loading } = useAuth();
-  if (loading) return <div style={{display:'flex',minHeight:'100vh',alignItems:'center',justifyContent:'center',fontSize:'14px',color:'#999'}}>Loading...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center text-sm text-zinc-400">Loading...</div>;
+
   return (
     <Routes>
       <Route path="/auth" element={user ? <Navigate to="/" /> : <AuthPage />} />

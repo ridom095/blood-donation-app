@@ -1,5 +1,5 @@
 # DropBlood
- 
+
 Blood donation platform. React frontend + Supabase backend.
 
 ## Setup (Do this first)
